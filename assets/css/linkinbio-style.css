@@ -1,0 +1,431 @@
+/**
+ * LinkInBio - Main Stylesheet
+ *
+ * @package linkinbio
+ * @since 1.0.0
+ */
+
+/* === Reset block defaults === */
+.lib .wp-block-group {
+    margin: 0;
+    padding: 0;
+}
+
+/* === CSS Variables (Light) === */
+.lib {
+    --lib-bg: #f5f5f5;
+    --lib-surface: #ffffff;
+    --lib-fg: #1a1a1a;
+    --lib-fg-soft: #4b5563;
+    --lib-muted: #6b7280;
+    --lib-accent: #3b82f6;
+    --lib-accent-hover: #2563eb;
+    --lib-border: rgba(0, 0, 0, 0.06);
+    --lib-border-strong: rgba(0, 0, 0, 0.10);
+    --lib-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --lib-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+    --lib-radius: 16px;
+
+    background: var(--lib-bg);
+    font-family: var(--lib-font);
+    color: var(--lib-fg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === CSS Variables (Dark) === */
+@media (prefers-color-scheme: dark) {
+    .lib {
+        --lib-bg: #111111;
+        --lib-surface: #1e1e1e;
+        --lib-fg: #f0f0f0;
+        --lib-fg-soft: #d1d5db;
+        --lib-muted: #9ca3af;
+        --lib-accent: #60a5fa;
+        --lib-accent-hover: #93bbfd;
+        --lib-border: rgba(255, 255, 255, 0.08);
+        --lib-border-strong: rgba(255, 255, 255, 0.12);
+        --lib-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* === Focus === */
+.lib *:focus-visible {
+    outline: 2px solid var(--lib-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* === Layout === */
+.lib>* {
+    width: 100%;
+    max-width: 480px;
+}
+
+.lib-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* エディタ内の中間ラッパーを透過 */
+.lib>.block-editor-inner-blocks,
+.lib>.block-editor-inner-blocks>.block-editor-block-list__layout,
+.lib-main>.block-editor-inner-blocks,
+.lib-main>.block-editor-inner-blocks>.block-editor-block-list__layout {
+    display: contents;
+}
+
+/* === Header === */
+.lib-header {
+    text-align: center;
+    padding: 0.5rem 0 1rem;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.lib-site-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--lib-muted);
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+/* === Footer === */
+.lib-footer {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.lib-copyright {
+    font-size: 12px;
+    color: var(--lib-muted);
+    margin: 0;
+}
+
+/* === Cards === */
+.wp-block-group.lib-card {
+    background: var(--lib-surface);
+    border: 1px solid var(--lib-border);
+    border-radius: var(--lib-radius);
+    padding: 1.5rem;
+    box-shadow: var(--lib-shadow);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: libFadeIn 0.5s ease forwards;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.lib-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.lib-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.lib-card:nth-child(3) {
+    animation-delay: 0.25s;
+}
+
+@keyframes libFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lib-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* === Section label === */
+.lib-section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lib-muted);
+    margin-bottom: 1rem;
+}
+
+/* === Profile === */
+.lib-profile {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* エディタ対応 */
+.lib-profile>.block-editor-inner-blocks,
+.lib-profile>.block-editor-inner-blocks>.block-editor-block-list__layout {
+    display: contents;
+}
+
+.lib-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--lib-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.lib-avatar-initials {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0;
+}
+
+.lib-avatar>p {
+    margin: 0;
+}
+
+.lib-name {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--lib-fg);
+    margin-bottom: 0.25rem;
+}
+
+.lib-role {
+    font-size: 14px;
+    color: var(--lib-muted);
+    margin-bottom: 0.75rem;
+}
+
+.lib-bio {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--lib-fg-soft);
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+/* === paragraph margin reset === */
+p.lib-site-name,
+p.lib-copyright,
+p.lib-avatar-initials,
+p.lib-role,
+p.lib-bio,
+p.lib-cta-text {
+    margin: 0;
+}
+
+/* === Link list === */
+.wp-block-buttons.lib-link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+}
+
+.wp-block-button.lib-link-row {
+    display: block;
+    width: 100%;
+}
+
+.wp-block-button.lib-link-row .wp-block-button__link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--lib-border-strong);
+    background: transparent;
+    color: var(--lib-fg);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.wp-block-button.lib-link-row .wp-block-button__link:hover,
+.wp-block-button.lib-link-row .wp-block-button__link:focus-visible {
+    background: var(--lib-bg);
+    border-color: var(--lib-border-strong);
+    color: var(--lib-fg);
+    box-shadow: none;
+}
+
+/* SNS icon (::before) */
+.wp-block-button.lib-link-row .wp-block-button__link::before {
+    content: "";
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 52%;
+}
+
+/* Arrow (::after) */
+.wp-block-button.lib-link-row .wp-block-button__link::after {
+    content: "\2192";
+    margin-left: auto;
+    font-size: 14px;
+    color: var(--lib-muted);
+    transition: transform 0.2s ease;
+}
+
+.wp-block-button.lib-link-row .wp-block-button__link:hover::after {
+    transform: translateX(3px);
+}
+
+/* GitHub */
+.wp-block-button.lib-link-gh .wp-block-button__link::before {
+    background-color: #24292e;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+    .wp-block-button.lib-link-gh .wp-block-button__link::before {
+        background-color: #e0e0e0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23111' d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3'/%3E%3C/svg%3E");
+    }
+}
+
+/* X (Twitter) */
+.wp-block-button.lib-link-x .wp-block-button__link::before {
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8-6.7-12h6.2l4.3 5.6L18.2 2zm-1 18.3h1.5L7 3.6H5.4l11.8 16.7z'/%3E%3C/svg%3E");
+}
+
+/* Instagram */
+.wp-block-button.lib-link-ig .wp-block-button__link::before {
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 2.2c3.2 0 3.6 0 4.8.1 1.1 0 1.8.2 2.2.4.6.2 1 .5 1.5 1 .5.5.8.9 1 1.5.2.4.4 1.1.4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.1-.2 1.8-.4 2.2-.2.6-.5 1-1 1.5-.5.5-.9.8-1.5 1-.4.2-1.1.4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.1 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.5-1-.5-.5-.8-.9-1-1.5-.2-.4-.4-1.1-.4-2.2C2.3 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c0-1.1.2-1.8.4-2.2.2-.6.5-1 1-1.5.5-.5.9-.8 1.5-1 .4-.2 1.1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1 0-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.5-.1 4.7s0 3.5.1 4.7c0 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.5.1 4.7.1s3.5 0 4.7-.1c1.1 0 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.5.1-4.7s0-3.5-.1-4.7c0-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.3a1.2 1.2 0 1 1 0 2.3 1.2 1.2 0 0 1 0-2.3z'/%3E%3C/svg%3E") center / 52% no-repeat,
+        linear-gradient(135deg, #F09433 0%, #E6683C 30%, #DC2743 60%, #BC1888 100%);
+}
+
+/* LinkedIn */
+.wp-block-button.lib-link-li .wp-block-button__link::before {
+    background-color: #0A66C2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.8 2.6 4.8 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.5-2.1 2.9V21h-4V9z'/%3E%3C/svg%3E");
+}
+
+/* === CTA === */
+.lib-cta {
+    text-align: center;
+}
+
+.lib-cta>.block-editor-inner-blocks,
+.lib-cta>.block-editor-inner-blocks>.block-editor-block-list__layout {
+    display: contents;
+}
+
+.lib-cta .lib-section-label {
+    text-align: center;
+}
+
+.lib-cta-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--lib-fg-soft);
+    margin-bottom: 1rem;
+}
+
+.wp-block-buttons.lib-cta-btn-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.wp-block-button.lib-cta-button {
+    display: block;
+    width: 100%;
+}
+
+.wp-block-button.lib-cta-button .wp-block-button__link {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--lib-accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wp-block-button.lib-cta-button .wp-block-button__link:hover,
+.wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
+    background: var(--lib-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .wp-block-button.lib-cta-button .wp-block-button__link:hover,
+    .wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
+        box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+    }
+}
+
+/* === Archive / Index post cards === */
+.lib-card.linkinbio-archive {
+    padding: 1rem;
+}
+
+.linkinbio-archive-intro {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.linkinbio-archive-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem;
+}
+
+.lib .wp-block-group.linkinbio-single-author {
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+    .lib {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .lib-card {
+        padding: 1.25rem;
+    }
+
+    .lib-name {
+        font-size: 22px;
+    }
+}

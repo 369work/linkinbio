@@ -1,0 +1,110 @@
+/**
+ * LinkInBio - Editor-specific Stylesheet
+ *
+ * @package linkinbio
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   1. アニメーション無効化
+   ========================================================================== */
+
+.lib-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* ==========================================================================
+   2. ルートコンテナのエディタ調整
+   ========================================================================== */
+
+.lib {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    background: var(--lib-bg, #f5f5f5) !important;
+    min-height: auto;
+    padding: 2rem 1rem;
+}
+
+.lib > .block-editor-inner-blocks,
+.lib > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: contents;
+}
+
+.lib > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+    width: 100%;
+    max-width: 480px;
+}
+
+/* ==========================================================================
+   3. lib-main のエディタ対応
+   ========================================================================== */
+
+.lib-main > .block-editor-inner-blocks,
+.lib-main > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: contents;
+}
+
+.lib-main > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+    min-width: 0;
+}
+
+/* ==========================================================================
+   4. プロフィールのエディタ対応
+   ========================================================================== */
+
+.lib-profile > .block-editor-inner-blocks,
+.lib-profile > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: contents;
+}
+
+/* ==========================================================================
+   5. CTA のエディタ対応
+   ========================================================================== */
+
+.lib-cta > .block-editor-inner-blocks,
+.lib-cta > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: contents;
+}
+
+/* ==========================================================================
+   6. ホバーエフェクト無効化
+   ========================================================================== */
+
+.wp-block-button.lib-link-row .wp-block-button__link:hover,
+.wp-block-button.lib-link-row .wp-block-button__link:focus-visible {
+    background: transparent !important;
+    border-color: var(--lib-border-strong) !important;
+    box-shadow: none !important;
+}
+
+.wp-block-button.lib-link-row .wp-block-button__link:hover::after {
+    transform: none;
+}
+
+.wp-block-button.lib-cta-button .wp-block-button__link:hover,
+.wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   7. フォーカススタイル
+   ========================================================================== */
+
+.lib *:focus-visible {
+    outline: 2px solid var(--lib-accent, #3b82f6);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   8. wp:html ブロック
+   ========================================================================== */
+
+.lib .wp-block-html {
+    margin: 0;
+    padding: 0;
+}

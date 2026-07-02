@@ -3,7 +3,7 @@ Contributors: miroku
 Requires at least: 6.7
 Tested up to: 7.0
 Requires PHP: 7.4
-Version: 1.0
+Version: 1.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,9 @@ LinkInBio は GPL v3 または それ以降のライセンスで配布されて�
 https://www.gnu.org/licenses/gpl-3.0.html
 
 == 更新履歴 ==
+= 1.1 =
+* 自動アップデート機能追加
+
 = 1.0 =
 * 初回リリース
 

@@ -22,12 +22,12 @@
                 },
                 {
                     "slug": "muted",
-                    "color": "#64748b",
+                    "color": "#475569",
                     "name": "Muted"
                 },
                 {
                     "slug": "accent",
-                    "color": "#6366f1",
+                    "color": "#4f46e5",
                     "name": "Accent"
                 },
                 {
@@ -46,6 +46,45 @@
                     "name": "Black"
                 }
             ]
+        },
+        "custom": {
+            "lib": {
+                "radius": "24px",
+                "light": {
+                    "bg": "#e0e7ff",
+                    "pageBackground": "linear-gradient(160deg, #e0e7ff 0%, #f5d0fe 50%, #cffafe 100%) fixed",
+                    "surface": "rgba(255, 255, 255, 0.55)",
+                    "fg": "#0f172a",
+                    "fgSoft": "#334155",
+                    "muted": "#475569",
+                    "accent": "#4f46e5",
+                    "accentHover": "#4338ca",
+                    "onAccent": "#ffffff",
+                    "border": "rgba(255, 255, 255, 0.7)",
+                    "borderStrong": "rgba(255, 255, 255, 0.8)",
+                    "shadow": "0 8px 32px rgba(31, 38, 135, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+                    "rowBackground": "rgba(255, 255, 255, 0.4)",
+                    "rowHover": "rgba(255, 255, 255, 0.7)",
+                    "cardBlur": "blur(18px) saturate(160%)"
+                },
+                "dark": {
+                    "bg": "#0f172a",
+                    "pageBackground": "linear-gradient(160deg, #0f172a 0%, #3b0764 50%, #083344 100%) fixed",
+                    "surface": "rgba(15, 23, 42, 0.55)",
+                    "fg": "#f1f5f9",
+                    "fgSoft": "#cbd5e1",
+                    "muted": "#a5b4cf",
+                    "accent": "#a5b4fc",
+                    "accentHover": "#c7d2fe",
+                    "onAccent": "#0f172a",
+                    "border": "rgba(255, 255, 255, 0.12)",
+                    "borderStrong": "rgba(255, 255, 255, 0.18)",
+                    "shadow": "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06)",
+                    "rowBackground": "rgba(255, 255, 255, 0.04)",
+                    "rowHover": "rgba(255, 255, 255, 0.10)",
+                    "cardBlur": "blur(18px) saturate(160%)"
+                }
+            }
         }
     },
     "styles": {
@@ -53,7 +92,6 @@
             "background": "#e0e7ff",
             "text": "#0f172a"
         },
-        "css": ".lib{--lib-bg:transparent;--lib-surface:rgba(255,255,255,0.55);--lib-fg:#0f172a;--lib-fg-soft:#334155;--lib-muted:#64748b;--lib-accent:#6366f1;--lib-accent-hover:#4f46e5;--lib-border:rgba(255,255,255,0.6);--lib-border-strong:rgba(255,255,255,0.8);--lib-radius:24px;background:linear-gradient(160deg,#e0e7ff 0%,#f5d0fe 50%,#cffafe 100%);background-attachment:fixed;} .lib-card{background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.7);box-shadow:0 8px 32px rgba(31,38,135,0.12),inset 0 1px 0 rgba(255,255,255,0.6);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);} .lib .wp-block-button.lib-link-row .wp-block-button__link{background:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.7);} .lib .wp-block-button.lib-link-row .wp-block-button__link:hover,.lib .wp-block-button.lib-link-row .wp-block-button__link:focus-visible{background:rgba(255,255,255,0.7);} .lib .wp-block-button.lib-cta-button .wp-block-button__link{background:#6366f1;color:#ffffff;} .lib .wp-block-button.lib-cta-button .wp-block-button__link:hover,.lib .wp-block-button.lib-cta-button .wp-block-button__link:focus-visible{background:#4f46e5;}",
         "blocks": {
             "core/group": {
                 "border": {

@@ -5,28 +5,71 @@
  * @since 1.0.0
  */
 
+/* === Color tokens === */
+
+/*
+ * Values come from settings.custom.lib in theme.json, so a style variation
+ * replaces them when it is selected. Keeping them out of styles.css avoids
+ * old variations piling up in the Additional CSS field.
+ */
+:root {
+    --lib-bg: var(--wp--custom--lib--light--bg, #f5f5f5);
+    --lib-page-bg: var(--wp--custom--lib--light--page-background, #f5f5f5);
+    --lib-surface: var(--wp--custom--lib--light--surface, #ffffff);
+    --lib-fg: var(--wp--custom--lib--light--fg, #1a1a1a);
+    --lib-fg-soft: var(--wp--custom--lib--light--fg-soft, #4b5563);
+    --lib-muted: var(--wp--custom--lib--light--muted, #5b6370);
+    --lib-accent: var(--wp--custom--lib--light--accent, #2563eb);
+    --lib-accent-hover: var(--wp--custom--lib--light--accent-hover, #1d4ed8);
+    --lib-on-accent: var(--wp--custom--lib--light--on-accent, #ffffff);
+    --lib-border: var(--wp--custom--lib--light--border, rgba(0, 0, 0, 0.06));
+    --lib-border-strong: var(--wp--custom--lib--light--border-strong, rgba(0, 0, 0, 0.10));
+    --lib-shadow: var(--wp--custom--lib--light--shadow, 0 1px 3px rgba(0, 0, 0, 0.04));
+    --lib-row-bg: var(--wp--custom--lib--light--row-background, transparent);
+    --lib-row-hover: var(--wp--custom--lib--light--row-hover, #f5f5f5);
+    --lib-card-blur: var(--wp--custom--lib--light--card-blur, none);
+    --lib-radius: var(--wp--custom--lib--radius, 16px);
+    --lib-font: var(--wp--preset--font-family--system-sans, system-ui, sans-serif);
+}
+
+/* Dark mode is chosen with the header toggle only; it does not follow the OS setting. */
+:root.is-dark {
+    --lib-bg: var(--wp--custom--lib--dark--bg, #111111);
+    --lib-page-bg: var(--wp--custom--lib--dark--page-background, #111111);
+    --lib-surface: var(--wp--custom--lib--dark--surface, #1e1e1e);
+    --lib-fg: var(--wp--custom--lib--dark--fg, #f0f0f0);
+    --lib-fg-soft: var(--wp--custom--lib--dark--fg-soft, #d1d5db);
+    --lib-muted: var(--wp--custom--lib--dark--muted, #9ca3af);
+    --lib-accent: var(--wp--custom--lib--dark--accent, #60a5fa);
+    --lib-accent-hover: var(--wp--custom--lib--dark--accent-hover, #93bbfd);
+    --lib-on-accent: var(--wp--custom--lib--dark--on-accent, #0b1220);
+    --lib-border: var(--wp--custom--lib--dark--border, rgba(255, 255, 255, 0.08));
+    --lib-border-strong: var(--wp--custom--lib--dark--border-strong, rgba(255, 255, 255, 0.12));
+    --lib-shadow: var(--wp--custom--lib--dark--shadow, 0 1px 3px rgba(0, 0, 0, 0.3));
+    --lib-row-bg: var(--wp--custom--lib--dark--row-background, transparent);
+    --lib-row-hover: var(--wp--custom--lib--dark--row-hover, #111111);
+    --lib-card-blur: var(--wp--custom--lib--dark--card-blur, none);
+
+    /* Presets used by blocks and the body background follow the toggle too. */
+    --wp--preset--color--foreground: var(--lib-fg);
+    --wp--preset--color--background: var(--lib-bg);
+    --wp--preset--color--surface: var(--lib-surface);
+    --wp--preset--color--muted: var(--lib-muted);
+    --wp--preset--color--accent: var(--lib-accent);
+    --wp--preset--color--border: var(--lib-border);
+
+    color-scheme: dark;
+}
+
 /* === Reset block defaults === */
 .lib .wp-block-group {
     margin: 0;
     padding: 0;
 }
 
-/* === CSS Variables (Light) === */
+/* === Root container === */
 .lib {
-    --lib-bg: #f5f5f5;
-    --lib-surface: #ffffff;
-    --lib-fg: #1a1a1a;
-    --lib-fg-soft: #4b5563;
-    --lib-muted: #6b7280;
-    --lib-accent: #3b82f6;
-    --lib-accent-hover: #2563eb;
-    --lib-border: rgba(0, 0, 0, 0.06);
-    --lib-border-strong: rgba(0, 0, 0, 0.10);
-    --lib-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    --lib-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
-    --lib-radius: 16px;
-
-    background: var(--lib-bg);
+    background: var(--lib-page-bg);
     font-family: var(--lib-font);
     color: var(--lib-fg);
     display: flex;
@@ -38,22 +81,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* === CSS Variables (Dark) === */
-@media (prefers-color-scheme: dark) {
-    .lib {
-        --lib-bg: #111111;
-        --lib-surface: #1e1e1e;
-        --lib-fg: #f0f0f0;
-        --lib-fg-soft: #d1d5db;
-        --lib-muted: #9ca3af;
-        --lib-accent: #60a5fa;
-        --lib-accent-hover: #93bbfd;
-        --lib-border: rgba(255, 255, 255, 0.08);
-        --lib-border-strong: rgba(255, 255, 255, 0.12);
-        --lib-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-}
-
 /* === Focus === */
 .lib *:focus-visible {
     outline: 2px solid var(--lib-accent);
@@ -62,7 +89,7 @@
 }
 
 /* === Layout === */
-.lib>* {
+.lib > * {
     width: 100%;
     max-width: 480px;
 }
@@ -75,28 +102,81 @@
     max-width: 480px;
 }
 
-/* エディタ内の中間ラッパーを透過 */
-.lib>.block-editor-inner-blocks,
-.lib>.block-editor-inner-blocks>.block-editor-block-list__layout,
-.lib-main>.block-editor-inner-blocks,
-.lib-main>.block-editor-inner-blocks>.block-editor-block-list__layout {
-    display: contents;
-}
-
 /* === Header === */
+
+/* Three columns keep the site title centred while the toggle sits on the right. */
 .lib-header {
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     padding: 0.5rem 0 1rem;
     max-width: 480px;
     margin: 0 auto;
 }
 
-.lib-site-name {
+.lib-header .lib-site-name {
+    grid-column: 2;
     font-size: 14px;
     font-weight: 600;
     color: var(--lib-muted);
     letter-spacing: 0.04em;
     margin: 0;
+    text-align: center;
+}
+
+.lib-header .lib-site-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lib-header .lib-site-name a:hover {
+    color: var(--lib-fg);
+}
+
+.lib-header .wp-block-html,
+.lib-header .lib-dark-toggle {
+    grid-column: 3;
+    justify-self: end;
+}
+
+/* === Dark mode toggle === */
+.lib-dark-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--lib-border-strong);
+    border-radius: 50%;
+    color: var(--lib-muted);
+    cursor: pointer;
+}
+
+.lib-dark-toggle:hover {
+    color: var(--lib-fg);
+}
+
+.lib-dark-toggle:focus-visible {
+    outline: 2px solid var(--lib-accent);
+    outline-offset: 2px;
+}
+
+.lib-dark-toggle__icon {
+    display: flex;
+}
+
+.lib-dark-toggle__icon--dark {
+    display: none;
+}
+
+.is-dark .lib-dark-toggle__icon--light {
+    display: none;
+}
+
+.is-dark .lib-dark-toggle__icon--dark {
+    display: flex;
 }
 
 /* === Footer === */
@@ -120,6 +200,8 @@
     border-radius: var(--lib-radius);
     padding: 1.5rem;
     box-shadow: var(--lib-shadow);
+    -webkit-backdrop-filter: var(--lib-card-blur);
+    backdrop-filter: var(--lib-card-blur);
     opacity: 0;
     transform: translateY(12px);
     animation: libFadeIn 0.5s ease forwards;
@@ -146,8 +228,9 @@
     }
 }
 
+/* Same selector as the card rule above, otherwise that rule wins and the animation still runs. */
 @media (prefers-reduced-motion: reduce) {
-    .lib-card {
+    .wp-block-group.lib-card {
         animation: none;
         opacity: 1;
         transform: none;
@@ -173,12 +256,6 @@
     align-items: center;
 }
 
-/* エディタ対応 */
-.lib-profile>.block-editor-inner-blocks,
-.lib-profile>.block-editor-inner-blocks>.block-editor-block-list__layout {
-    display: contents;
-}
-
 .lib-avatar {
     width: 80px;
     height: 80px;
@@ -193,12 +270,12 @@
 .lib-avatar-initials {
     font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--lib-on-accent);
     line-height: 1;
     margin: 0;
 }
 
-.lib-avatar>p {
+.lib-avatar > p {
     margin: 0;
 }
 
@@ -225,7 +302,6 @@
 }
 
 /* === paragraph margin reset === */
-p.lib-site-name,
 p.lib-copyright,
 p.lib-avatar-initials,
 p.lib-role,
@@ -254,7 +330,7 @@ p.lib-cta-text {
     padding: 0.75rem 1rem;
     border-radius: 12px;
     border: 1px solid var(--lib-border-strong);
-    background: transparent;
+    background: var(--lib-row-bg);
     color: var(--lib-fg);
     font-size: 14px;
     font-weight: 500;
@@ -267,7 +343,7 @@ p.lib-cta-text {
 
 .wp-block-button.lib-link-row .wp-block-button__link:hover,
 .wp-block-button.lib-link-row .wp-block-button__link:focus-visible {
-    background: var(--lib-bg);
+    background: var(--lib-row-hover);
     border-color: var(--lib-border-strong);
     color: var(--lib-fg);
     box-shadow: none;
@@ -298,17 +374,21 @@ p.lib-cta-text {
     transform: translateX(3px);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .wp-block-button.lib-link-row .wp-block-button__link:hover::after {
+        transform: none;
+    }
+}
+
 /* GitHub */
 .wp-block-button.lib-link-gh .wp-block-button__link::before {
     background-color: #24292e;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3'/%3E%3C/svg%3E");
 }
 
-@media (prefers-color-scheme: dark) {
-    .wp-block-button.lib-link-gh .wp-block-button__link::before {
-        background-color: #e0e0e0;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23111' d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3'/%3E%3C/svg%3E");
-    }
+.is-dark .wp-block-button.lib-link-gh .wp-block-button__link::before {
+    background-color: #e0e0e0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23111' d='M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3'/%3E%3C/svg%3E");
 }
 
 /* X (Twitter) */
@@ -333,11 +413,6 @@ p.lib-cta-text {
 /* === CTA === */
 .lib-cta {
     text-align: center;
-}
-
-.lib-cta>.block-editor-inner-blocks,
-.lib-cta>.block-editor-inner-blocks>.block-editor-block-list__layout {
-    display: contents;
 }
 
 .lib-cta .lib-section-label {
@@ -366,7 +441,7 @@ p.lib-cta-text {
     width: 100%;
     padding: 0.875rem 1.5rem;
     background: var(--lib-accent);
-    color: #ffffff;
+    color: var(--lib-on-accent);
     border: none;
     border-radius: 12px;
     font-size: 14px;
@@ -380,21 +455,98 @@ p.lib-cta-text {
 .wp-block-button.lib-cta-button .wp-block-button__link:hover,
 .wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
     background: var(--lib-accent-hover);
+    color: var(--lib-on-accent);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
-@media (prefers-color-scheme: dark) {
+.is-dark .wp-block-button.lib-cta-button .wp-block-button__link:hover,
+.is-dark .wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+}
 
+@media (prefers-reduced-motion: reduce) {
     .wp-block-button.lib-cta-button .wp-block-button__link:hover,
     .wp-block-button.lib-cta-button .wp-block-button__link:focus-visible {
-        box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+        transform: none;
     }
 }
 
 /* === Archive / Index post cards === */
-.lib-card.linkinbio-archive {
+.wp-block-group.lib-card.linkinbio-archive {
     padding: 1rem;
+}
+
+.linkinbio-query .wp-block-post-template {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.linkinbio-image {
+    margin-bottom: 0.75rem;
+}
+
+.linkinbio-image img {
+    border-radius: calc(var(--lib-radius) - 6px);
+}
+
+.linkinbio-meta {
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.linkinbio-term,
+.linkinbio-term a {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--lib-accent);
+    text-decoration: none;
+}
+
+.linkinbio-date {
+    font-size: 12px;
+    color: var(--lib-muted);
+}
+
+.linkinbio-title {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.linkinbio-title a {
+    color: var(--lib-fg);
+    text-decoration: none;
+}
+
+.linkinbio-title a:hover {
+    text-decoration: underline;
+}
+
+.linkinbio-excerpt {
+    font-size: 14px;
+    color: var(--lib-fg-soft);
+}
+
+.linkinbio-readmore {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--lib-accent);
+    text-decoration: underline;
+}
+
+.linkinbio-pagination {
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 14px;
+}
+
+.linkinbio-pagination a {
+    color: var(--lib-accent);
+    text-decoration: underline;
 }
 
 .linkinbio-archive-intro {
@@ -407,7 +559,19 @@ p.lib-cta-text {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: var(--lib-accent);
     margin: 0 0 0.25rem;
+}
+
+/* === Single === */
+.linkinbio-single-meta {
+    font-size: 12px;
+    color: var(--lib-muted);
+    gap: 0.5rem;
+}
+
+.linkinbio-single-meta a {
+    color: var(--lib-accent);
 }
 
 .lib .wp-block-group.linkinbio-single-author {
@@ -415,19 +579,85 @@ p.lib-cta-text {
     margin-bottom: 1rem;
 }
 
-.linkinbio-single-meta {
-    font-size: 12px;
+.linkinbio-single-author-label {
     color: var(--lib-muted);
-    gap: 0.5rem;
+}
+
+/* === Page / 404 / Search === */
+.lib-page-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+.lib-404-message,
+.lib-no-results {
+    font-size: 14px;
+    color: var(--lib-fg-soft);
+    margin-bottom: 1rem;
+}
+
+.lib-search-form .wp-block-search__input {
+    border: 1px solid var(--lib-border-strong);
+    border-radius: 12px;
+    background: var(--lib-surface);
+    color: var(--lib-fg);
+    padding: 0.5rem 0.75rem;
+}
+
+.lib-search-form .wp-block-search__button {
+    border-radius: 12px;
+    background: var(--lib-accent);
+    color: var(--lib-on-accent);
+    border: none;
+}
+
+/* === Content links === */
+
+/* theme.json turns underlines off globally; links inside body copy must stay underlined. */
+.wp-block-post-content a:where(:not(.wp-element-button)),
+.wp-block-comment-content a,
+.wp-block-term-description a {
+    color: var(--lib-accent);
+    text-decoration: underline;
+}
+
+/* === Comments === */
+.lib-comments {
+    margin-top: 1.5rem;
+}
+
+.lib-comments .wp-block-comments-title {
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.lib-comments .wp-block-comment-author-name,
+.lib-comments .wp-block-comment-date {
+    font-size: 12px;
+}
+
+.lib-comments .wp-block-comment-date,
+.lib-comments .wp-block-comment-date a {
+    color: var(--lib-muted);
+}
+
+.lib-comments textarea,
+.lib-comments input:not([type="submit"]):not([type="checkbox"]) {
+    border: 1px solid var(--lib-border-strong);
+    border-radius: 8px;
+    background: var(--lib-surface);
+    color: var(--lib-fg);
 }
 
 /* === Responsive === */
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .lib {
         padding: 1.5rem 0.75rem;
     }
 
-    .lib-card {
+    .wp-block-group.lib-card {
         padding: 1.25rem;
     }
 

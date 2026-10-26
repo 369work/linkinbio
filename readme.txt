@@ -1,22 +1,37 @@
 === LinkInBio ===
-Contributors: miroku
+Contributors: 369work
 Requires at least: 6.7
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Version: 1.1
-License: GPL v3 or later
+Stable tag: 1.2
+License: GNU General Public License v3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 シンプルな link-in-bio ブロックテーマ。サイトエディターから簡単にカスタマイズできます。
+
+== このテーマについて ==
+
+LinkInBio は、369Theme の有料テーマ「Blanky Link」の Lite 版です。
+もっと多くのセクションやデザインを使いたい方は、Blanky Link をご覧ください。
+https://369theme.com/themes/blanky-link
 
 == 必要なもの ==
 
 * WordPress 6.7 以上
 * PHP 7.4 以上
 
+== ダウンロード ==
+
+最新版は GitHub からダウンロードできます。
+https://github.com/369work/linkinbio/releases/latest
+
+GitHub の「Code」ボタンの「Download ZIP」でダウンロードすると、解凍したフォルダの名前が「linkinbio-main」になります。
+そのまま使わず、フォルダの名前を「linkinbio」に変えてからアップロードしてください。
+フォルダの名前が違うと、自動アップデートが届きません。
+
 == インストール方法 ==
 
-1. linkinbio フォルダを /wp-content/themes/ にアップロードする
+1. linkinbio フォルダを /wp-content/themes/ にアップロードする（フォルダの名前は「linkinbio」のまま）
 2. 管理画面「外観 > テーマ」から「LinkInBio」を有効化する
 3. 管理画面「外観 > エディター」でプロフィールやリンクを編集する
 
@@ -29,7 +44,16 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * CTAボタンのテキストとメールアドレス
 * カラー・フォントなどのスタイル
 
+ヘッダーのサイト名は「設定 > 一般」のサイトのタイトルが表示されます。
+フッターの著作権表記には、今年の年とサイトのタイトルが自動で表示されます。
+
 スタイルバリエーション「Glass (Light)」を選ぶと、明るいすりガラス調のデザインに切り替わります。
+
+== ダークモード ==
+
+ヘッダー右上のボタンで、ライト／ダークを切り替えられます。
+選んだ表示はブラウザに保存され、次に開いたときも同じ表示になります。
+パソコンやスマートフォンのダークモード設定には連動しません（ボタンで選んだ表示だけが使われます）。
 
 == トップページの表示について ==
 
@@ -44,12 +68,32 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 なお、カテゴリーやアーカイブ、個別投稿ページは通常どおり投稿一覧・本文を表示します。
 
+== Copyright ==
+
+LinkInBio WordPress Theme, Copyright 2026 369work
+LinkInBio is distributed under the terms of the GNU GPL v3.0 or later.
+
 == ライセンス ==
 
-LinkInBio は GPL v3 または それ以降のライセンスで配布されています。
+LinkInBio は GPL v3.0 または それ以降のライセンスで配布されています。
 https://www.gnu.org/licenses/gpl-3.0.html
 
 == 更新履歴 ==
+
+= 1.2 =
+* ダークモードの切り替えボタンを追加（OS の設定には連動しない方式に変更）
+* 固定ページ・404・検索結果のテンプレートを追加（固定ページが抜粋だけで表示されていた不具合を修正）
+* 個別投稿にコメント欄を追加
+* ヘッダーのサイト名をサイトのタイトルに変更
+* フッターの年号が、テンプレートを保存した年のまま固定される不具合を修正
+* 文字と背景のコントラストを改善
+* スタイルバリエーション「Glass (Light)」の色をテーマの設定に移動し、ダークモードに対応
+* 翻訳できなかった文言を翻訳できるように修正
+* 「動きを減らす」設定のときにアニメーションが止まらなかった不具合を修正
+* ヘッダー・フッターの要素が二重になっていた不具合を修正
+* 自動アップデートの仕組みを、ほかの 369Theme のテーマと同じものに更新
+* readme にダウンロード方法を追記
+
 = 1.1 =
 * 自動アップデート機能追加
 

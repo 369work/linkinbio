@@ -30,12 +30,12 @@
                 },
                 {
                     "slug": "muted",
-                    "color": "#6b7280",
+                    "color": "#5b6370",
                     "name": "Muted"
                 },
                 {
                     "slug": "accent",
-                    "color": "#3b82f6",
+                    "color": "#2563eb",
                     "name": "Accent"
                 },
                 {
@@ -52,23 +52,47 @@
                     "slug": "black",
                     "color": "#000000",
                     "name": "Black"
-                },
-                {
-                    "slug": "bio-bg",
-                    "color": "#0f172a",
-                    "name": "Bio Background"
-                },
-                {
-                    "slug": "bio-card",
-                    "color": "rgba(255,255,255,0.12)",
-                    "name": "Bio Glass Card"
-                },
-                {
-                    "slug": "bio-button",
-                    "color": "#ffffff",
-                    "name": "Bio Button"
                 }
             ]
+        },
+        "custom": {
+            "lib": {
+                "radius": "16px",
+                "light": {
+                    "bg": "#f5f5f5",
+                    "pageBackground": "#f5f5f5",
+                    "surface": "#ffffff",
+                    "fg": "#1a1a1a",
+                    "fgSoft": "#4b5563",
+                    "muted": "#5b6370",
+                    "accent": "#2563eb",
+                    "accentHover": "#1d4ed8",
+                    "onAccent": "#ffffff",
+                    "border": "rgba(0, 0, 0, 0.06)",
+                    "borderStrong": "rgba(0, 0, 0, 0.10)",
+                    "shadow": "0 1px 3px rgba(0, 0, 0, 0.04)",
+                    "rowBackground": "transparent",
+                    "rowHover": "#f5f5f5",
+                    "cardBlur": "none"
+                },
+                "dark": {
+                    "bg": "#111111",
+                    "pageBackground": "#111111",
+                    "surface": "#1e1e1e",
+                    "fg": "#f0f0f0",
+                    "fgSoft": "#d1d5db",
+                    "muted": "#9ca3af",
+                    "accent": "#60a5fa",
+                    "accentHover": "#93bbfd",
+                    "onAccent": "#0b1220",
+                    "border": "rgba(255, 255, 255, 0.08)",
+                    "borderStrong": "rgba(255, 255, 255, 0.12)",
+                    "shadow": "0 1px 3px rgba(0, 0, 0, 0.3)",
+                    "rowBackground": "transparent",
+                    "rowHover": "#111111",
+                    "cardBlur": "none"
+                }
+            }
         },
         "spacing": {
             "padding": true,
@@ -155,55 +179,13 @@
                 {
                     "name": "2X-Large",
                     "size": "2rem",
-                    "slug": "2xl"
+                    "slug": "xxl"
                 }
             ],
             "lineHeight": true
         },
         "border": {
             "radius": true
-        },
-        "styles": {
-            "color": {
-                "text": "var(--wp--preset--color--foreground)",
-                "background": "var(--wp--preset--color--background)"
-            },
-            "typography": {
-                "fontFamily": "var(--wp--preset--font-family--system-sans)",
-                "fontSize": "var(--wp--preset--font-size--base)",
-                "fontWeight": "400",
-                "lineHeight": "1.7"
-            },
-            "spacing": {
-                "blockGap": "0",
-                "padding": {
-                    "top": "0",
-                    "right": "0",
-                    "bottom": "0",
-                    "left": "0"
-                },
-                "margin": {
-                    "top": "0",
-                    "right": "0",
-                    "bottom": "0",
-                    "left": "0"
-                }
-            },
-            "elements": {
-                "link": {
-                    "color": {
-                        "text": "inherit"
-                    },
-                    "typography": {
-                        "textDecoration": "none"
-                    },
-                    ":hover": {
-                        "typography": {
-                            "textDecoration": "none"
-                        }
-                    }
-                }
-            }
         }
     },
     "styles": {

@@ -10,17 +10,22 @@ declare(strict_types=1);
 defined( 'ABSPATH' ) || exit;
 
 // =============================================================================
-// テーマ定数
+// Constants
 // =============================================================================
 
-define( 'LINKINBIO_VERSION', wp_get_theme()->get( 'Version' ) );
+/*
+ * Read the version from the parent theme. wp_get_theme() with no argument
+ * returns the active (child) theme, whose version has nothing to do with the
+ * assets loaded from here.
+ */
+define( 'LINKINBIO_VERSION', (string) wp_get_theme( get_template() )->get( 'Version' ) );
 
 // =============================================================================
-// テーマ初期設定
+// Theme setup
 // =============================================================================
 
 /**
- * テーマサポートを宣言し、エディタースタイルを登録する。
+ * Declare theme supports and register the editor stylesheets.
  *
  * @return void
  */
@@ -50,15 +55,15 @@ function linkinbio_setup(): void {
 add_action( 'after_setup_theme', 'linkinbio_setup' );
 
 // =============================================================================
-// スタイルのエンキュー
+// Assets
 // =============================================================================
 
 /**
- * フロントエンド CSS をエンキューする。
+ * Enqueue the front-end stylesheets and the dark mode toggle.
  *
  * @return void
  */
-function linkinbio_enqueue_styles(): void {
+function linkinbio_enqueue_assets(): void {
 	wp_enqueue_style(
 		'linkinbio-theme',
 		get_template_directory_uri() . '/style.css',
@@ -72,18 +77,32 @@ function linkinbio_enqueue_styles(): void {
 		array( 'linkinbio-theme' ),
 		LINKINBIO_VERSION
 	);
+
+	/*
+	 * Printed in the head, not the footer: the saved choice has to be on
+	 * <html> before the first paint, or dark mode flashes light on load.
+	 * The file is tiny and binds the button on DOMContentLoaded.
+	 */
+	wp_enqueue_script(
+		'linkinbio-dark-toggle',
+		get_template_directory_uri() . '/assets/js/linkinbio-dark-toggle.js',
+		array(),
+		LINKINBIO_VERSION,
+		array( 'in_footer' => false )
+	);
 }
-add_action( 'wp_enqueue_scripts', 'linkinbio_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'linkinbio_enqueue_assets' );
 
 // =============================================================================
-// ブロックパターンカテゴリ
+// Block pattern category
 // =============================================================================
 
 /**
- * ブロックパターンカテゴリを登録する。
+ * Register the block pattern category.
  *
- * パターン本体は /patterns/*.php の各ファイルヘッダー（Title / Slug）から
- * WordPress が自動登録するため、ここではカテゴリのみを登録する。
+ * The patterns themselves are registered by core from the headers of
+ * /patterns/*.php. Core does that on init at priority 10, so the category
+ * is registered at 9 to exist before the patterns that use it.
  *
  * @return void
  */
@@ -97,13 +116,23 @@ function linkinbio_register_pattern_category(): void {
 		)
 	);
 }
-add_action( 'init', 'linkinbio_register_pattern_category' );
+add_action( 'init', 'linkinbio_register_pattern_category', 9 );
 
 // =============================================================================
-// 自動アップデート
+// Values resolved on every request
 // =============================================================================
 
-require_once get_template_directory() . '/inc/class-linkinbio-theme-updater.php';
+require_once get_template_directory() . '/inc/dynamic-values.php';
+
+// =============================================================================
+// Automatic updates
+// =============================================================================
+
+/*
+ * inc/class-theme-updater.php is generated from the shared template by
+ * premium/build-updater.php. Do not edit it here.
+ */
+require_once get_template_directory() . '/inc/class-theme-updater.php';
 
 new LinkInBio_Theme_Updater(
 	array(
@@ -112,16 +141,20 @@ new LinkInBio_Theme_Updater(
 	)
 );
 
-/**
- * ローカル開発環境（Local / Studio など）でのみ、SSL 証明書の検証を無効化する。
- *
- * @param array<string, mixed> $args リクエスト引数。
- * @param string               $url  リクエスト先 URL。
- * @return array<string, mixed>
+/*
+ * Only on local / development environments, skip SSL verification for
+ * requests to 369theme.com. Production keeps verification on.
  */
 if ( in_array( wp_get_environment_type(), array( 'local', 'development' ), true ) ) {
 	add_filter(
 		'http_request_args',
+		/**
+		 * Disable SSL verification for 369theme.com on local environments.
+		 *
+		 * @param array<string, mixed> $args Request arguments.
+		 * @param string               $url  Request URL.
+		 * @return array<string, mixed>
+		 */
 		function ( array $args, string $url ): array {
 			if ( false !== strpos( $url, '369theme.com' ) ) {
 				$args['sslverify'] = false;
